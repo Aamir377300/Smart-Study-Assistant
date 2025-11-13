@@ -79,7 +79,7 @@ function QuizInteractive({ quiz }) {
               <div className="mt-3 text-base">
                 {selected[i] === correctOption
                   ? <span className="text-green-700 font-bold">✅ Correct!</span>
-                  : <span className="text-red-600 font-bold">❌ Wrong. Correct answer: <b>{correctOption}</b></span>
+                  : <span className="text-red-600 font-bold"> Wrong. Correct answer: <b>{correctOption}</b></span>
                 }
               </div>
             )}

@@ -35,7 +35,7 @@ const HF_MODEL = "openai/gpt-oss-120b:fastest";
 // const HF_MODEL = "Qwen/Qwen2.5-7B-Instruct-1M";
 
 if (!HuggingFace_API_KEY) {
-  console.error("❌ Missing HuggingFace_API_KEY");
+  console.error(" Missing HuggingFace_API_KEY");
   process.exit(1);
 }
 
@@ -162,8 +162,8 @@ Respond ONLY with JSON. No Markdown.`;
 
 
 app.get("/", (req, res) => {
-  res.send("Smart Study Assistant API (HuggingFace Router, latest models) 🚀");
+  res.send("Smart Study Assistant API (HuggingFace Router, latest models) ");
 });
 
 const PORT = 5002;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} (model ${HF_MODEL})`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT} (model ${HF_MODEL})`));
