@@ -10,7 +10,12 @@ const FRONTEND_URL2 = process.env.FRONTEND_URL2;
 
 app.use(
   cors({
-    origin: [FRONTEND_URL1, FRONTEND_URL2],
+    origin: [
+      process.env.FRONTEND_URL1,
+      process.env.FRONTEND_URL2
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
   })
 );
 
