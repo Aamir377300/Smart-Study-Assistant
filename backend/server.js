@@ -5,16 +5,24 @@ const axios = require("axios");
 
 const app = express();
 app.use(express.json());
-const FRONTEND_URL1 = process.env.FRONTEND_URL1;
-const FRONTEND_URL2 = process.env.FRONTEND_URL2;
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173"
+];
 
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL,
-      "http://localhost:5173"
-    ],
-    methods: ["GET", "POST"],
+    origin: function (origin, callback) {
+      // allow mobile apps / curl / Postman
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed from this origin: " + origin));
+      }
+    },
     credentials: true
   })
 );
