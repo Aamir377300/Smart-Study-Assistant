@@ -7,25 +7,23 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL || "",
+  "https://smart-study-assistant-chi.vercel.app",
   "http://localhost:5173"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow mobile apps / curl / Postman
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS not allowed from this origin: " + origin));
-      }
-    },
-    credentials: true
-  })
-);
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+  }
+  next();
+});
 
 const HuggingFace_API_KEY = process.env.HF_API_KEY;
 
