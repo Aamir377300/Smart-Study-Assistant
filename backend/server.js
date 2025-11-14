@@ -8,7 +8,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   process.env.FRONTEND_URL || "",
-  "https://smart-study-assistant-chi.vercel.app",
+  "https://smart-study-assistant-chi.vercel.app", // due to cors issue i have directly paste the vercel link
   "http://localhost:5173"
 ];
 
